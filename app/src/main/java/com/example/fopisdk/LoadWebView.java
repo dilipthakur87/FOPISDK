@@ -1,5 +1,6 @@
 package com.example.fopisdk;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -8,30 +9,44 @@ import android.os.Build;
 import android.webkit.WebView;
 
 public class LoadWebView {
-    static Context context;
-
-    WebView mywebview;
+    Context context;
 
     public LoadWebView(Context context) {
         this.context = context;
     }
 
-    public static void loadFOPIAPP(WebView view) {
+    public void loadFOPIAPP(WebView view, Activity activity) {
+        if(isAndroidEmulator()){
+            activity.finish();
+            android.os.Process.killProcess(android.os.Process.myPid());
+        }
 
-        view.loadUrl("http://kandktechnepal.com/");
+        if(isRunningOnEmulator()){
+            activity.finish();
+            android.os.Process.killProcess(android.os.Process.myPid());
+        }
+
+        if(isBlueStak()){
+            activity.finish();
+            android.os.Process.killProcess(android.os.Process.myPid());
+        }
+
+        view.getSettings().setDomStorageEnabled(true);
+        view.getSettings().setJavaScriptEnabled(true);
+        view.loadUrl("http://front.myfopi.com/#/index");
 
     }
 
 
 
-    private static int getBatteryPercentage(){
+    private int getBatteryPercentage(){
         IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
         Intent batteryStatus = context.registerReceiver(null, ifilter);
         return batteryStatus.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
 
     }
 
-    private static boolean isBlueStak(){
+    private boolean isBlueStak(){
         boolean isBluestack=false;
         int BatteryPercent = getBatteryPercentage();
         String version = System.getProperty("os.version");
@@ -40,7 +55,7 @@ public class LoadWebView {
         return isBluestack;
     }
 
-    private static boolean isAndroidEmulator() {
+    private boolean isAndroidEmulator() {
         String product = Build.PRODUCT;
         boolean isEmulator = false;
         if (product != null) {
@@ -49,7 +64,7 @@ public class LoadWebView {
         return isEmulator;
     }
 
-    private static boolean isRunningOnEmulator() {
+    private boolean isRunningOnEmulator() {
         return Build.FINGERPRINT.startsWith("generic")
                 ||Build.FINGERPRINT.contains("generic")
                 || Build.FINGERPRINT.startsWith("unknown")
