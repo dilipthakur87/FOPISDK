@@ -10,7 +10,7 @@ ext {
     // Group ID of the SDK which will be added in implementation line of gradle
     artifact = 'fopisdk'
     // Artifact ID of the SDK which will be added in implementation line of gradle
-    libraryVersion = '0.0.7' // Version of the library you created in Bintray
+    libraryVersion = '0.0.8' // Version of the library you created in Bintray
 
     libraryName = 'fopisdk' // It is generally the module name
     libraryDescription = 'Utlity to use shared preference in your app.'
