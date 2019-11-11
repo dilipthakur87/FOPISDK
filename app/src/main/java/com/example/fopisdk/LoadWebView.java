@@ -1,54 +1,32 @@
 package com.example.fopisdk;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.BatteryManager;
 import android.os.Build;
-import android.os.Bundle;
-import android.view.View;
 import android.webkit.WebView;
 
-public class FopiWebView extends AppCompatActivity {
+public class LoadWebView {
+    static Context context;
 
-    private static WebView mywebview;
-    static Activity activity;
+    WebView mywebview;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_web_view);
-
-        activity = this;
-//        mywebview = findViewById(R.id.webView);
+    public LoadWebView(Context context) {
+        this.context = context;
     }
 
-    public static void loadFOPIAPP(View view) {
-        if(isAndroidEmulator()){
-            activity.finish();
-            android.os.Process.killProcess(android.os.Process.myPid());
-        }
+    public static void loadFOPIAPP(WebView view) {
 
-        if(isRunningOnEmulator()){
-            activity.finish();
-            android.os.Process.killProcess(android.os.Process.myPid());
-        }
+        view.loadUrl("http://kandktechnepal.com/");
 
-        if(isBlueStak()){
-            activity.finish();
-            android.os.Process.killProcess(android.os.Process.myPid());
-        }
-
-        mywebview =view.findViewById(R.id.webView);
-        mywebview.loadUrl("https://front.myfopi.com");
     }
+
+
 
     private static int getBatteryPercentage(){
         IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
-        Intent batteryStatus = activity.registerReceiver(null, ifilter);
+        Intent batteryStatus = context.registerReceiver(null, ifilter);
         return batteryStatus.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
 
     }
@@ -86,3 +64,4 @@ public class FopiWebView extends AppCompatActivity {
                 || Build.HARDWARE.contains("vbox86");
     }
 }
+
