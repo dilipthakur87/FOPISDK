@@ -1,10 +1,18 @@
 # compiler: R8
 # compiler_version: 1.5.64
-# pg_map_id: fa0008b
+# pg_map_id: 9afca08
 com.example.fopisdk.BuildConfig -> com.example.fopisdk.BuildConfig:
     1:1:void <init>():6:6 -> <init>
 com.example.fopisdk.FopiWebView -> com.example.fopisdk.FopiWebView:
     android.webkit.WebView mywebview -> a
-    1:1:void <init>():8:8 -> <init>
-    1:1:void loadFOPIAPP():21:21 -> loadFOPIAPP
-    1:4:void onCreate(android.os.Bundle):14:17 -> onCreate
+    android.app.Activity activity -> b
+    1:1:void <init>():15:15 -> <init>
+    1:4:boolean isAndroidEmulator():66:69 -> a
+    1:3:int getBatteryPercentage():50:52 -> b
+    1:3:boolean isBlueStak():58 -> b
+    4:5:boolean isBlueStak():59:60 -> b
+    1:3:void loadFOPIAPP(android.view.View):30:32 -> loadFOPIAPP
+    4:15:boolean isRunningOnEmulator():75:86 -> loadFOPIAPP
+    4:15:void loadFOPIAPP(android.view.View):35 -> loadFOPIAPP
+    16:26:void loadFOPIAPP(android.view.View):36:46 -> loadFOPIAPP
+    1:4:void onCreate(android.os.Bundle):22:25 -> onCreate
