@@ -9,7 +9,6 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button loadFopi;
     WebView webView;
     LoadWebView loadWebView;
     Activity activity = this;
