@@ -1,0 +1,10 @@
+# compiler: R8
+# compiler_version: 1.5.64
+# pg_map_id: fa0008b
+com.example.fopisdk.BuildConfig -> com.example.fopisdk.BuildConfig:
+    1:1:void <init>():6:6 -> <init>
+com.example.fopisdk.FopiWebView -> com.example.fopisdk.FopiWebView:
+    android.webkit.WebView mywebview -> a
+    1:1:void <init>():8:8 -> <init>
+    1:1:void loadFOPIAPP():21:21 -> loadFOPIAPP
+    1:4:void onCreate(android.os.Bundle):14:17 -> onCreate
